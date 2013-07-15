@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" >
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+											<!-- Simple Type definition -->
+ 
+ <!-- Types for HOST -->
+
+	<!-- Name -->
+	<xsd:simpleType name="nameType">
+		<xsd:restriction base="xsd:string"> 
+   			<xsd:pattern value="[a-zA-Z][a-zA-Z0-9_]*" />
+  		</xsd:restriction>
+	</xsd:simpleType>
+	
+	
+	<!-- Status for server: client has OK fixed -->
+	<xsd:simpleType name="statusServerType">
+    	<xsd:restriction base="xsd:string">
+      		<xsd:enumeration value="OK"/>
+      		<xsd:enumeration value="UNAVAIL"/>
+      		<xsd:enumeration value="CLOSED"/>
+      		<xsd:enumeration value="UNLICENSED"/>
+    	</xsd:restriction>
+  	</xsd:simpleType>	
+  	
+  	<!-- Load -->
+  	 <xsd:simpleType name="loadType">
+   		 <xsd:restriction base="xsd:integer">
+    		  <xsd:minInclusive value="0" />
+   		 </xsd:restriction>
+  	</xsd:simpleType>
+  	
+  	<!-- Memory -->
+  	 <xsd:simpleType name="memoryType">
+   		 <xsd:restriction base="xsd:integer">
+    		  <xsd:minInclusive value="0" />
+   		 </xsd:restriction>
+  	</xsd:simpleType>
+  	
+  	
+  	<xsd:simpleType name="serverTypeType">
+    	<xsd:restriction base="xsd:string">
+      		<xsd:enumeration value="Server"/>
+      		<xsd:enumeration value="Master"/>
+    	</xsd:restriction>
+  	</xsd:simpleType> 
+
+
+
+
+<!-- Types for JOBGROUP -->
+
+
+  <!-- jobID Type -->
+  <xsd:simpleType name="jobIDType">
+    <xsd:restriction base="xsd:integer">
+      <xsd:minInclusive value="1" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+  <!-- State Type (for a job)-->
+  <xsd:simpleType name="stateJobType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="PENDING"/>
+      <xsd:enumeration value="RUNNING"/>
+      <xsd:enumeration value="DONE"/>
+      <xsd:enumeration value="EXIT"/>
+      <xsd:enumeration value="SUSPENDED"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+  
+
+<!-- Types for CLUSTER -->
+
+	<!-- ClusterStatus TYPE -->
+	<xsd:simpleType name="statusClusterType">
+    	<xsd:restriction base="xsd:string">
+      		<xsd:enumeration value="OK"/>
+      		<xsd:enumeration value="UNAVAIL"/>
+    	</xsd:restriction>
+  	</xsd:simpleType> 
+  	
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+ 										<!-- Complex Type definition -->
+ 										
+ 										
+ 										
+ 
+ <!-- Types for HOST -->
+
+
+	<!-- Client Type -->
+	<xsd:complexType name="clientType">
+		<xsd:attribute name="status" type="xsd:string" fixed="OK" use="required"/>
+	</xsd:complexType>
+
+
+	<!-- Server Type -->
+	<xsd:complexType name="serverType">
+		<xsd:attribute name="type" type="serverTypeType" use="required"/>
+		<xsd:attribute name="status" type="statusServerType" use="required"/>
+		<xsd:attribute name="load" type="loadType" use="optional"/>
+		<xsd:attribute name="memory" type="memoryType" use="optional"/>
+	</xsd:complexType>
+
+
+	<!-- HOST: it can be either a client or a server -->
+  	<xsd:complexType name="hostType">
+    	<xsd:choice>
+      		<xsd:element name="Client" type="clientType"/>
+      		<xsd:element name="Server" type="serverType"/>
+    	</xsd:choice>
+    	<xsd:attribute name="nameH" type="nameType" use="required"/>
+  	</xsd:complexType>
+
+
+
+<!-- Types for JOBGROUP -->
+
+	<!-- JobGroup type -->
+	<xsd:complexType name="jobGroupType">
+		<xsd:sequence>
+			<xsd:element name="Job" type="jobType" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<xsd:attribute name="nameJG" type="nameType" default="default"/>
+		<xsd:attribute name="description" type="xsd:string" use="optional"/>
+	</xsd:complexType>
+
+
+<!-- Types for JOB -->
+
+  	<!-- Job type -->
+  	<xsd:complexType name="jobType">
+    	<xsd:attribute name="jobID" type="jobIDType" use="required"/>
+    	<xsd:attribute name="state" type="stateJobType" use="required"/>  
+ 		<xsd:attribute name="subTime" type="xsd:dateTime" use="required"/>
+ 		<xsd:attribute name="subHost" type="nameType" use="required" />
+  		<xsd:attribute name="execHost" type="nameType" use="optional" />
+  	</xsd:complexType>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+
+<!-- CLUSTER -->
+
+
+
+    <xsd:complexType name="ClusterType">
+   		<xsd:sequence>
+				<xsd:element name="Host" type="hostType" minOccurs="0" maxOccurs="unbounded" />
+				<xsd:element name="JobGroup" type="jobGroupType" maxOccurs="unbounded" />
+			</xsd:sequence>
+			<xsd:attribute name="nameC" type="nameType" use="required" />
+			<xsd:attribute name="status" type="statusClusterType" use="required"/>
+			<xsd:attribute name="masterHost" type="nameType" use="optional"/>    
+    </xsd:complexType>
+    
+    
+    
+  
+    
+    
+      <xsd:complexType name="JobSubmissionR">
+			<xsd:attribute name="JobId" type="xsd:integer" use="required"/>
+			<xsd:attribute name="TransactionId" type="xsd:integer" use="required"/>    
+    </xsd:complexType>
+    
+    
+    
+      
+
+    <xsd:element name="Cluster" type="ClusterType">
+    
+
+		<xsd:key name="hostNameUnique">
+			<xsd:selector xpath="./Host" />
+			<xsd:field xpath="@nameH"/>
+		</xsd:key>
+		
+		<xsd:key name="jobGroupNameUnique">
+			<xsd:selector xpath="./JobGroup" />
+			<xsd:field xpath="@nameJG"/>
+		</xsd:key>
+
+    	<xsd:key name="jobIDUnique">
+      		<xsd:selector xpath="./JobGroup/Job" />
+      		<xsd:field xpath="@jobID"/>
+    	</xsd:key>
+    	
+    	
+		<xsd:keyref name="jobGroupName" refer="jobGroupNameUnique">
+			<xsd:selector xpath="./JobGroup/Job" />
+			<xsd:field xpath="@jobGroup"/>
+		</xsd:keyref>
+	
+		<xsd:keyref name="executionHost" refer="hostNameUnique">
+			<xsd:selector xpath="./JobGroup/Job" />
+			<xsd:field xpath="@execHost"/>
+		</xsd:keyref>
+
+    	<xsd:keyref name="submissionHost" refer="hostNameUnique">
+      		<xsd:selector xpath="./JobGroup/Job" />
+      		<xsd:field xpath="@subHost"/>
+    	</xsd:keyref>
+		
+		<xsd:keyref name="masterHost" refer="hostNameUnique">
+			<xsd:selector xpath="." />
+			<xsd:field xpath="@masterHost"/>
+		</xsd:keyref>
+
+
+    </xsd:element>
+    
+    
+    
+</xsd:schema> 

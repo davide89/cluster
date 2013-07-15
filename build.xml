@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+
+<!-- 
+-->
+<project name="Assignment6" default="run-test" basedir=".">
+
+	<!-- define properties -->
+	<property name="lab6.location" location="." />
+	<property name="build.dir" location="${lab6.location}/build" />
+	<property name="src.dir" location="${lab6.location}/src" />
+	<property name="tests.dir.suf" location="it/polito/dp2/PJS/lab6/tests" />
+	<property name="gen.src.dir" location="${lab6.location}/generated/gen-src" />
+	<property name="pkg2"  value="it.polito.dp2.PJS.sol6.client2"/>
+	<property name="pkg.test"  value="it.polito.dp2.PJS.lab6.tests"/>
+	<property name="WSDL"  location="${lab6.location}/wsdl/PJSDispatch/PJSDispatchService.wsdl"/>
+	<property name="XSD"  location="${lab6.location}/xsd/PJSHostsInfo.xsd"/>
+	
+	<property name="debug" value="true" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.6" />
+	<property name="source" value="1.6" />
+
+    <!-- define classpath -->
+    <path id="test-classpath">
+	    <pathelement path="${build.dir}"/>
+	   	<pathelement location="${lab6.location}/lib/ExecutionHostServer.jar"/>
+	   	<pathelement location="${lab6.location}/lib/PJS.jar"/>
+		<pathelement location="${lab6.location}/lib/junit-4.5.jar"/>
+    </path>
+
+	<!-- targets -->
+	<target name="init">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${gen.src.dir}"/>
+	</target>   
+   
+   <target name="build-client-1" depends="init">
+		<ant antfile="${basedir}/sol_build.xml" target="compile-client-1"/>
+   </target>
+
+   <target name="build-client-2" depends="init">
+		<ant antfile="${basedir}/sol_build.xml" target="compile-client-2"/>
+   </target>
+	
+   <target name="compile-xsd" depends="init" description="compile xsd of execHosts">
+		<echo message="Compiling the schema..." />
+    	<mkdir dir="${gen.src.dir}" />
+	    <exec executable="xjc">
+	        <arg line="-d ${gen.src.dir} -p ${pkg.test}.gen.jaxb ${XSD}"/>
+	    </exec>
+   </target>
+
+   <target name="compile-wsdl" depends="init">
+   	<exec executable="wsimport">
+   	    <arg line="-p ${pkg.test}.gen.jaxws -d ${build.dir} -keep -s ${gen.src.dir} ${WSDL}"/>
+   	</exec>
+   </target>
+	
+	
+
+   <target name="build-tests" depends="build-client-1, build-client-2, compile-xsd, compile-wsdl">
+    <echo>Compiling generated sources...</echo>
+   	<javac srcdir="${gen.src.dir}" destdir="${build.dir}" debug="${debug}" debuglevel="${debuglevel}" source="${source}" target="${target}" includeantruntime="false">
+		<classpath>
+			<path refid="test-classpath" />
+		</classpath>
+    </javac>
+    <echo>Compiling tests...</echo>
+    <javac srcdir="${src.dir}" destdir="${build.dir}" includes="it/polito/dp2/PJS/lab6/tests/**" debug="${debug}" debuglevel="${debuglevel}" source="${source}" target="${target}" includeantruntime="false">
+		<classpath>
+			<path refid="test-classpath" />
+		</classpath>
+    </javac>
+   </target>
+	
+   <target name="move-files" depends="init">
+   		<mkdir dir="${lab6.location}/META-INF"/>
+		<copy todir="${lab6.location}/META-INF">
+			<fileset dir="${lab6.location}/wsdl/PJSDispatch/" includes="**"/>
+		</copy>
+   </target>
+
+   <!-- Target for starting dispatch services
+   		The URLs of the services are specified in the arg line
+   -->
+   <target name="startPJSDispatch" depends="move-files">
+	<java fork="yes" jar="lib/ExecutionHostServer.jar" dir=".">
+		<arg line="http://localhost:8085/ http://localhost:8086/"/>
+		<classpath>
+			<path refid="test-classpath" />
+		</classpath>
+	</java>
+   </target>
+
+   <!-- Target for running tests	-->
+   <target name="run-test" depends="build-tests">
+		<antcall target="runTest.real">
+			<param name="test.class" value="it.polito.dp2.PJS.lab6.tests.MasterTests" />
+			<param name="error.exit.status" value="126" />
+		</antcall>
+   </target>
+
+   <target name="runTest.real">
+		<junit printsummary="yes" dir="." fork="yes" haltonfailure="no" showoutput="no" filtertrace="true">
+			<formatter type="brief" usefile="false"/>
+			<test haltonfailure="no" failureproperty="test_failed" name="${test.class}"/>
+			<classpath>
+				<path refid="test-classpath" />
+			</classpath>
+		</junit>
+		<fail if="test_failed" status="${error.exit.status}" message="*** Tests FAILED ***"/>
+		<echo>*** Tests passed  ***</echo>
+   </target>
+	
+   <!-- target for cleaning -->
+   <target name="clean">
+   		<delete dir="${gen.src.dir}"/>
+		<delete dir="${build.dir}"/>
+   </target>   
+   
+</project>

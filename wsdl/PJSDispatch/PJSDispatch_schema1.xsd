@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://pad.polito.it/PJS" xmlns:tns="http://pad.polito.it/PJS" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="dispatch" type="tns:dispatch"/>
+
+  <xs:element name="dispatchResponse" type="tns:dispatchResponse"/>
+
+  <xs:element name="suspend" type="tns:suspend"/>
+
+  <xs:element name="suspendResponse" type="tns:suspendResponse"/>
+  
+  <xs:element name="resume" type="tns:resume"/>
+
+  <xs:element name="resumeResponse" type="tns:resumeResponse"/>
+
+  <xs:element name="kill" type="tns:kill"/>
+
+  <xs:element name="killResponse" type="tns:killResponse"/>
+
+  <xs:element name="UnknownJob" type="tns:UnknownJob"/>
+
+  <xs:element name="TooManyJobs" type="tns:TooManyJobs"/>
+
+  <xs:element name="AlreadyDispatchedJob" type="tns:AlreadyDispatchedJob"/>
+
+  <xs:element name="ServiceUnavailable" type="tns:ServiceUnavailable"/>
+  
+  <xs:complexType name="dispatch">
+    <xs:annotation><xs:documentation>
+    The dispatch request carries the following items:
+    - jobId: the id of the job to be dispatched
+    - cmdline: the command to be run
+    - stdin: the standard input to be passed to the job (optional)
+    - callbackAddr: the URI where the job results have to be communicated
+    </xs:documentation></xs:annotation>
+    <xs:sequence>
+      <xs:element name="jobId" type="xs:positiveInteger" />
+      <xs:element name="cmdline" type="xs:string" />
+      <xs:element name="stdin" type="xs:string" minOccurs="0"/>
+      <xs:element name="callbackAddr" type="xs:anyURI" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="dispatchResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:annotation><xs:documentation>
+    The suspend request carries the id of the job to be suspended
+  </xs:documentation></xs:annotation>
+  <xs:complexType name="suspend">
+    <xs:sequence>
+      <xs:element name="jobId" type="xs:positiveInteger" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="suspendResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:annotation><xs:documentation>
+    The resume request carries the id of the job to be resumed
+  </xs:documentation></xs:annotation>
+  <xs:complexType name="resume">
+    <xs:sequence>
+      <xs:element name="jobId" type="xs:positiveInteger" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="resumeResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:annotation><xs:documentation>
+    The kill request carries the ids of the jobs to be killed.
+    If no job id is provided, all jobs are killed.
+  </xs:documentation></xs:annotation>
+  <xs:complexType name="kill">
+    <xs:sequence>
+      <xs:element name="jobId" type="xs:positiveInteger" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="killResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:annotation><xs:documentation>
+    An UnknownJob element carries an optional message and the ids of the unknown jobs
+  </xs:documentation></xs:annotation>
+  <xs:complexType name="UnknownJob">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+      <xs:element name="jobId" type="xs:positiveInteger" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:annotation><xs:documentation>
+    A TooManyJobs element carries an optional message
+  </xs:documentation></xs:annotation>
+  <xs:complexType name="TooManyJobs">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:annotation><xs:documentation>
+    An AlreadyDispatchedJob element carries an optional message
+  </xs:documentation></xs:annotation>
+  <xs:complexType name="AlreadyDispatchedJob">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:annotation><xs:documentation>
+    A ServiceUnavailable element carries an optional message
+  </xs:documentation></xs:annotation>
+  <xs:complexType name="ServiceUnavailable">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+ 
+</xs:schema>
+

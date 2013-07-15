@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://pad.polito.it/PJSHostsInfo" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://pad.polito.it/PJSHostsInfo">
+      <xsd:element name="hosts">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="host" type="tns:THost" maxOccurs="unbounded"/>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="THost">
+      	<xsd:attribute name="name" type="tns:Name" use="required"/>
+ 		<xsd:attribute name="type" type="tns:THostType" use="required"/>
+ 		<xsd:attribute name="status" type="tns:THostStatus" use="required"/>
+ 		<xsd:attribute name="load" type="xsd:integer" use="optional"/>
+ 		<xsd:attribute name="memory" type="xsd:integer" use="optional"/>
+ 		<xsd:attribute name="uri" type="xsd:anyURI" use="optional"/>
+      </xsd:complexType>
+      <xsd:simpleType name="THostStatus">
+      	<xsd:restriction base="xsd:string">
+      		<xsd:enumeration value="OK"/>
+      		<xsd:enumeration value="Unavail"/>
+      		<xsd:enumeration value="Closed"/>
+      		<xsd:enumeration value="Unlicensed"/>
+      	</xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="THostType">
+      	<xsd:restriction base="xsd:string">
+      		<xsd:enumeration value="Client"/>
+      		<xsd:enumeration value="Server"/>
+      		<xsd:enumeration value="Master"/>
+      	</xsd:restriction>
+      </xsd:simpleType>
+            <xsd:simpleType name="Name">
+	  	<xsd:restriction base="xsd:string">
+	  		<xsd:pattern value="[a-zA-Z][a-zA-Z0-9_]*"/>
+	  	</xsd:restriction>
+	  </xsd:simpleType>
+</xsd:schema>

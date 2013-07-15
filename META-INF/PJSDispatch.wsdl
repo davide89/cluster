@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<definitions targetNamespace="http://pad.polito.it/PJS" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://pad.polito.it/PJS" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://pad.polito.it/PJS" schemaLocation="PJSDispatch_schema1.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="dispatch">
+    <part name="parameters" element="tns:dispatch"/>
+  </message>
+  <message name="dispatchResponse">
+    <part name="parameters" element="tns:dispatchResponse"/>
+  </message>
+  <message name="suspend">
+    <part name="parameters" element="tns:suspend"/>
+  </message>
+  <message name="suspendResponse">
+    <part name="parameters" element="tns:suspendResponse"/>
+  </message>
+  <message name="resume">
+    <part name="parameters" element="tns:resume"/>
+  </message>
+  <message name="resumeResponse">
+    <part name="parameters" element="tns:resumeResponse"/>
+  </message>
+  <message name="kill">
+    <part name="parameters" element="tns:kill"/>
+  </message>
+  <message name="killResponse">
+    <part name="parameters" element="tns:killResponse"/>
+  </message>
+  <message name="UnknownJob">
+    <part name="fault" element="tns:UnknownJob"/>
+  </message>
+  <message name="TooManyJobs">
+    <part name="fault" element="tns:TooManyJobs"/>
+  </message>
+  <message name="AlreadyDispatchedJob">
+    <part name="fault" element="tns:AlreadyDispatchedJob"/>
+  </message>
+  <message name="ServiceUnavailable">
+  	<part name="fault" element="tns:ServiceUnavailable"></part>
+  </message>
+  <portType name="PJSDispatch">
+    <operation name="dispatch">
+      <documentation>Dispatches a job to the execution host
+      				 If the job cannot be dispatched a fault is returned:
+					 -TooManyJobs if the maximum number of jobs has been reached for this host
+					 -AlreadyDispatchedJob if the a job with the same id has already been dispatched to this host
+					 If the service is temporarily unavailable the ServiceUnavailable fault is returned
+      </documentation>
+      <input message="tns:dispatch"/>
+      <output message="tns:dispatchResponse"/>
+      <fault message="tns:TooManyJobs" name="TooManyJobs"/>
+      <fault message="tns:AlreadyDispatchedJob" name="AlreadyDispatchedJob"/>
+      <fault message="tns:ServiceUnavailable" name="ServiceUnavailable"/>
+    </operation>
+    <operation name="suspend">
+      <documentation>Suspends the execution of a job
+					 If the service is temporarily unavailable the ServiceUnavailable fault is returned
+	  </documentation>
+      <input message="tns:suspend"/>
+      <output message="tns:suspendResponse"/>
+      <fault message="tns:UnknownJob" name="UnknownJob"/>
+      <fault message="tns:ServiceUnavailable" name="ServiceUnavailable"/>
+    </operation>
+    <operation name="resume">
+      <documentation>Resumes the execution of a suspended job
+      				 If the job was not suspended the operation has no effect
+					 If the service is temporarily unavailable the ServiceUnavailable fault is returned
+      </documentation>
+      <input message="tns:resume"/>
+      <output message="tns:resumeResponse"/>
+      <fault message="tns:UnknownJob" name="UnknownJob"/>
+      <fault message="tns:ServiceUnavailable" name="ServiceUnavailable"/>
+    </operation>
+    <operation name="kill">
+      <documentation>Kills one or more jobs on the host
+					 If the service is temporarily unavailable the ServiceUnavailable fault is returned
+      </documentation>
+      <input message="tns:kill"/>
+      <output message="tns:killResponse"/>
+      <fault message="tns:UnknownJob" name="UnknownJob"/>
+      <fault message="tns:ServiceUnavailable" name="ServiceUnavailable"/>
+    </operation>
+  </portType>
+</definitions>
+

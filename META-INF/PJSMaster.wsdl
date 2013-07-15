@@ -1,0 +1,1328 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/PJSMaster/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PJSMaster" targetNamespace="http://www.example.org/PJSMaster/">
+  
+  
+  
+  
+  <wsdl:types>
+
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/PJSMaster/">
+    
+    	<xsd:import schemaLocation="./PJSSchema.xsd"/>
+      
+  
+  
+     
+  	<!-- GETHOSTSNAME -->
+            <xsd:element name="GetHostsName" type="tns:GetHostsName"></xsd:element>           
+            <xsd:complexType name="GetHostsName"></xsd:complexType>
+            
+            
+            <xsd:element name="GetHostsNameResponse"
+            	type="tns:GetHostsNameResponse">
+            </xsd:element>
+    
+    		<xsd:complexType name="GetHostsNameResponse">
+            	<xsd:sequence>
+            		<xsd:element name="HostsName" type="xsd:string" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+    
+    
+   			 <xsd:element name="GetHostsNameFault">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="GetHostsNameFault" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+    
+    		
+ 	<!-- GETHOSTS -->
+ 			
+ 			<xsd:element name="GetHosts">
+		    	<xsd:complexType>
+		         	<xsd:sequence>
+		         		<xsd:element name="HostRequest" type="nameType" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+		       		</xsd:sequence>
+		    	</xsd:complexType>
+		    </xsd:element>
+	    
+	    
+	  		<xsd:element name="GetHostsResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="HostResponse" type="hostType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            
+            
+            <xsd:element name="UnknownHost">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="UnknownHost" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            
+            
+            <xsd:element name="GetHostsFault">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="GetHostsFault" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+    
+    
+    
+    <!-- GETJOBSID -->
+    		<xsd:element name="GetJobId" type="tns:GetJobId"></xsd:element>           
+            <xsd:complexType name="GetJobId"></xsd:complexType>
+            
+            
+            <xsd:element name="GetJobIdResponse"
+            	type="tns:GetJobIdResponse">
+            </xsd:element>
+    
+    		<xsd:complexType name="GetJobIdResponse">
+            	<xsd:sequence>
+            		<xsd:element name="JobId" type="xsd:integer" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+    
+    
+   			 <xsd:element name="GetJobIdFault">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="GetJobIdFault" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+    
+    
+    
+
+
+	<!-- GETJOBS -->
+ 			
+ 			<xsd:element name="GetJobs">
+		    	<xsd:complexType>
+		         	<xsd:sequence>
+		         		<xsd:element name="JobRequest" type="jobIDType" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+		       		</xsd:sequence>
+		    	</xsd:complexType>
+		    </xsd:element>
+	    
+	    
+	  		<xsd:element name="GetJobsResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="JobsResponse" type="jobType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            
+            
+            <xsd:element name="UnknownJob">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="UnknownJob" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            
+            
+            <xsd:element name="GetJobsFault">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="GetJobsFault" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            
+            
+            
+            
+            
+<!-- GETJOBGROUPSNAME -->
+            <xsd:element name="GetJobGroupsName" type="tns:GetJobGroupsName"></xsd:element>           
+            <xsd:complexType name="GetJobGroupsName"></xsd:complexType>
+            
+            
+            <xsd:element name="GetJobGroupsNameResponse"
+            	type="tns:GetJobGroupsNameResponse">
+            </xsd:element>
+    
+    		<xsd:complexType name="GetJobGroupsNameResponse">
+            	<xsd:sequence>
+            		<xsd:element name="JobGroupsName" type="xsd:string" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+    
+    
+   			 <xsd:element name="GetJobGroupsNameFault">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="GetJobGroupsNameFault" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+    
+    		
+ 	<!-- GETJOBGROUP -->
+ 			
+ 			<xsd:element name="GetJobGroups">
+		    	<xsd:complexType>
+		         	<xsd:sequence>
+		         		<xsd:element name="JobGroupRequest" type="nameType" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+		       		</xsd:sequence>
+		    	</xsd:complexType>
+		    </xsd:element>
+	    
+	    
+	  		<xsd:element name="GetJobGroupsResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="JobGroupResponse" type="jobGroupType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            
+            
+            <xsd:element name="UnknownJobGroup">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="UnknownJobGroup" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            
+            
+            <xsd:element name="GetJobGroupsFault">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="GetJobGroupsFault" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>       
+   
+    
+    
+    
+    
+    
+    <!-- JOB SUBMISSION -->
+    
+    
+    		<xsd:element name="SubmitJob">
+		    	<xsd:complexType>
+		         	<xsd:sequence>
+		         		<xsd:element name="client" type="nameType" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="Command" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="StdIn" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+		         		<xsd:element name="JobGroup" type="nameType" maxOccurs="1" minOccurs="0"></xsd:element>
+		         		<xsd:element name="Version" type="xsd:integer" maxOccurs="1" minOccurs="0"></xsd:element>
+		       		</xsd:sequence>
+		    	</xsd:complexType>
+		    </xsd:element>
+    
+    
+   			 <xsd:element name="SubmitJobResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="SubmitJobResponse" type="JobSubmissionR" maxOccurs="1" minOccurs="1"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+    
+    
+    		 <xsd:element name="SubmitJobFault">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="SubmitJobFault" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element> 
+    
+    
+    
+    <!-- JOB SUSPEND -->
+    
+    
+    		<xsd:element name="SuspendJob">
+		    	<xsd:complexType>
+		         	<xsd:sequence>
+		         		<xsd:element name="JobId" type="jobIDType" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="Client" type="nameType" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="TransactionID" type="xsd:integer" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="Version" type="xsd:integer" maxOccurs="1" minOccurs="0"></xsd:element>
+		       		</xsd:sequence>
+		    	</xsd:complexType>
+		    </xsd:element>
+    
+    
+    		<xsd:element name="SuspendJobResponse" type="tns:SuspendJobResp"></xsd:element>           
+            <xsd:complexType name="SuspendJobResp"></xsd:complexType>
+        
+    
+    		 <xsd:element name="SuspendJobFault">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="SuspendJobFault" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element> 
+            
+             <xsd:element name="ServiceUnavailable">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="ServiceUnavailableFault" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element> 
+    
+    
+    
+    
+    <!-- JOB RESUME -->
+    
+    
+    		<xsd:element name="ResumeJob">
+		    	<xsd:complexType>
+		         	<xsd:sequence>
+		         		<xsd:element name="JobId" type="jobIDType" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="Client" type="nameType" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="TransactionID" type="xsd:integer" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="Version" type="xsd:integer" maxOccurs="1" minOccurs="0"></xsd:element>
+		       		</xsd:sequence>
+		    	</xsd:complexType>
+		    </xsd:element>
+    
+    
+    		<xsd:element name="ResumeJobResponse" type="tns:ResumeJobResp"></xsd:element>           
+            <xsd:complexType name="ResumeJobResp"></xsd:complexType>
+        
+    
+    		 <xsd:element name="ResumeJobFault">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="ResumeJobFault" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element> 
+            
+            
+  	<!-- JOB RESULT -->
+    
+    
+    		<xsd:element name="ResultJob">
+		    	<xsd:complexType>
+		         	<xsd:sequence>
+		         		<xsd:element name="JobId" type="jobIDType" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="Client" type="nameType" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="TransactionID" type="xsd:integer" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="Version" type="xsd:integer" maxOccurs="1" minOccurs="0"></xsd:element>
+		       		</xsd:sequence>
+		    	</xsd:complexType>
+		    </xsd:element>
+    
+    
+    		<xsd:element name="ResultJobResponse" type="tns:ResultJobResp"></xsd:element>           
+            <xsd:complexType name="ResultJobResp"></xsd:complexType>
+        
+    
+    		 <xsd:element name="ResultJobFault">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="ResultJobFault" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element> 
+            
+    
+    <!-- JOB KILL -->
+    
+    
+    		<xsd:element name="KillJob">
+		    	<xsd:complexType>
+		         	<xsd:sequence>
+		         		<xsd:element name="JobId" type="jobIDType" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="Client" type="nameType" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="TransactionID" type="xsd:integer" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="Version" type="xsd:integer" maxOccurs="1" minOccurs="0"></xsd:element>
+		       		</xsd:sequence>
+		    	</xsd:complexType>
+		    </xsd:element>
+    
+    
+    		<xsd:element name="KillJobResponse" type="tns:KillJobResp"></xsd:element>           
+            <xsd:complexType name="KillJobResp"></xsd:complexType>
+        
+    
+    		 <xsd:element name="KillJobFault">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="KillJobFault" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element> 
+            
+            
+ 	<!-- JOBGROUP KILL -->
+    
+    
+    		<xsd:element name="KillJobGroup">
+		    	<xsd:complexType>
+		         	<xsd:sequence>
+		         		<xsd:element name="JobGroupName" type="nameType" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="Client" type="nameType" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="TransactionID" type="xsd:integer" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="Version" type="xsd:integer" maxOccurs="1" minOccurs="0"></xsd:element>
+		       		</xsd:sequence>
+		    	</xsd:complexType>
+		    </xsd:element>
+    
+    
+    		<xsd:element name="KillJobGroupResponse" type="tns:KillJobGroupResp"></xsd:element>           
+            <xsd:complexType name="KillJobGroupResp"></xsd:complexType>
+        
+        
+        
+    
+    		 <xsd:element name="KillJobGroupFault">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="KillJobGroupFault" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element> 
+    
+    
+    
+    
+    
+
+
+
+
+
+<!-- JOBGROUP SUSPEND -->
+    
+    
+    		<xsd:element name="SuspendJobGroup">
+		    	<xsd:complexType>
+		         	<xsd:sequence>
+		         		<xsd:element name="JobGroupName" type="nameType" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="Client" type="nameType" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="TransactionID" type="xsd:integer" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="Version" type="xsd:integer" maxOccurs="1" minOccurs="0"></xsd:element>
+		       		</xsd:sequence>
+		    	</xsd:complexType>
+		    </xsd:element>
+    
+    
+    		<xsd:element name="SuspendJobGroupResponse" type="tns:SuspendJobGroupResp"></xsd:element>           
+            <xsd:complexType name="SuspendJobGroupResp"></xsd:complexType>
+        
+    
+    		 <xsd:element name="SuspendJobGroupFault">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="SuspendJobGroupFault" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element> 
+            
+
+    
+    
+    
+    
+    <!-- JOBGROUP RESUME -->
+    
+    
+    		<xsd:element name="ResumeJobGroup">
+		    	<xsd:complexType>
+		         	<xsd:sequence>
+		         		<xsd:element name="JobGroupName" type="nameType" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="Client" type="nameType" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="TransactionID" type="xsd:integer" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="Version" type="xsd:integer" maxOccurs="1" minOccurs="0"></xsd:element>
+		       		</xsd:sequence>
+		    	</xsd:complexType>
+		    </xsd:element>
+    
+    
+    		<xsd:element name="ResumeJobGroupResponse" type="tns:ResumeJobGroupResp"></xsd:element>           
+            <xsd:complexType name="ResumeJobGroupResp"></xsd:complexType>
+        
+    
+    		 <xsd:element name="ResumeJobGroupFault">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="ResumeJobGroupFault" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element> 
+
+
+    
+    
+    
+    <!-- JOB TERMINATED -->
+    
+    
+    		<xsd:element name="JobTerminatedNotification">
+		    	<xsd:complexType>
+		         	<xsd:sequence>
+		         		<xsd:element name="JobId" type="jobIDType" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="exitStatus" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+		         		<xsd:element name="stdOut" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+		       		</xsd:sequence>
+		    	</xsd:complexType>
+		    </xsd:element>
+    
+    
+    		<xsd:element name="JobTerminatedNotificationResponse" type="tns:JobTerminatedNotificationResp"></xsd:element>           
+            <xsd:complexType name="JobTerminatedNotificationResp"></xsd:complexType>
+        
+    
+    
+    		 <xsd:element name="JobTerminatedNotificationFault">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="JobTerminatedNotificationFault" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element> 
+ 
+    
+    
+    </xsd:schema>
+  </wsdl:types>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  MESSAGES -->
+
+
+
+<!-- GetHostNames -->
+  <wsdl:message name="GetHostsNameRequest">
+  	<wsdl:part name="parameters" element="tns:GetHostsName"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetHostsNameResponse">
+  	<wsdl:part name="parameters" element="tns:GetHostsNameResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetHostsNameFault">
+    <wsdl:part name="parameters" element="tns:GetHostsNameFault"></wsdl:part>
+  </wsdl:message>
+  
+  
+  
+  
+<!-- GetHost --> 
+  <wsdl:message name="GetHostsRequest">
+  	<wsdl:part name="parameters" element="tns:GetHosts"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetHostsResponse">
+  	<wsdl:part name="parameters" element="tns:GetHostsResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetHostsFault">
+    <wsdl:part name="parameters" element="tns:GetHostsFault"></wsdl:part>
+  </wsdl:message>
+   <wsdl:message name="UnknownHost">
+    <wsdl:part name="parameters" element="tns:UnknownHost"></wsdl:part>
+  </wsdl:message>
+  
+  
+  
+  
+  
+  
+<!-- GetJobId -->
+  <wsdl:message name="GetJobIdRequest">
+  	<wsdl:part name="parameters" element="tns:GetJobId"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetJobIdResponse">
+  	<wsdl:part name="parameters" element="tns:GetJobIdResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetJobIdFault">
+    <wsdl:part name="parameters" element="tns:GetJobIdFault"></wsdl:part>
+  </wsdl:message>
+  
+  
+  
+  
+<!-- GetJobs --> 
+  <wsdl:message name="GetJobsRequest">
+  	<wsdl:part name="parameters" element="tns:GetJobs"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetJobsResponse">
+  	<wsdl:part name="parameters" element="tns:GetJobsResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetJobsFault">
+    <wsdl:part name="parameters" element="tns:GetJobsFault"></wsdl:part>
+  </wsdl:message>
+   <wsdl:message name="UnknownJob">
+    <wsdl:part name="parameters" element="tns:UnknownJob"></wsdl:part>
+  </wsdl:message>
+  
+  
+  
+  
+  
+<!-- GetJobGroupsNames -->
+  <wsdl:message name="GetJobGroupsNameRequest">
+  	<wsdl:part name="parameters" element="tns:GetJobGroupsName"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetJobGroupsNameResponse">
+  	<wsdl:part name="parameters" element="tns:GetJobGroupsNameResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetJobGroupsNameFault">
+    <wsdl:part name="parameters" element="tns:GetJobGroupsNameFault"></wsdl:part>
+  </wsdl:message>
+  
+  
+  
+  
+<!-- GetJobGroups --> 
+  <wsdl:message name="GetJobGroupsRequest">
+  	<wsdl:part name="parameters" element="tns:GetJobGroups"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetJobGroupsResponse">
+  	<wsdl:part name="parameters" element="tns:GetJobGroupsResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetJobGroupsFault">
+    <wsdl:part name="parameters" element="tns:GetJobGroupsFault"></wsdl:part>
+  </wsdl:message>
+   <wsdl:message name="UnknownJobGroup">
+    <wsdl:part name="parameters" element="tns:UnknownJobGroup"></wsdl:part>
+  </wsdl:message>  
+  
+  
+  
+  
+
+<!-- JobSubmission --> 
+  <wsdl:message name="SubmitJobRequest">
+  	<wsdl:part name="parameters" element="tns:SubmitJob"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SubmitJobResponse">
+  	<wsdl:part name="parameters" element="tns:SubmitJobResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SubmitJobFault">
+    <wsdl:part name="parameters" element="tns:SubmitJobFault"></wsdl:part>
+  </wsdl:message>
+    
+    
+    
+<!-- JobSuspend --> 
+  <wsdl:message name="SuspendJobRequest">
+  	<wsdl:part name="parameters" element="tns:SuspendJob"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SuspendJobResponse">
+  	<wsdl:part name="parameters" element="tns:SuspendJobResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SuspendFault">
+    <wsdl:part name="parameters" element="tns:SuspendJobFault"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ServiceUnavailable">
+    <wsdl:part name="parameters" element="tns:ServiceUnavailable"></wsdl:part>
+  </wsdl:message>
+  
+
+  
+<!-- JobResume --> 
+  <wsdl:message name="ResumeJobRequest">
+  	<wsdl:part name="parameters" element="tns:ResumeJob"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ResumeJobResponse">
+  	<wsdl:part name="parameters" element="tns:ResumeJobResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ResumeFault">
+    <wsdl:part name="parameters" element="tns:ResumeJobFault"></wsdl:part>
+  </wsdl:message>
+  
+  
+<!-- JobKill --> 
+  <wsdl:message name="KillJobRequest">
+  	<wsdl:part name="parameters" element="tns:KillJob"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="KillJobResponse">
+  	<wsdl:part name="parameters" element="tns:KillJobResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="KillFault">
+    <wsdl:part name="parameters" element="tns:KillJobFault"></wsdl:part>
+  </wsdl:message>
+  
+  
+ <!-- ResultJob --> 
+  <wsdl:message name="ResultJobRequest">
+  	<wsdl:part name="parameters" element="tns:ResultJob"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ResultJobResponse">
+  	<wsdl:part name="parameters" element="tns:ResultJobResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ResultFault">
+    <wsdl:part name="parameters" element="tns:ResultJobFault"></wsdl:part>
+  </wsdl:message>
+  
+  
+<!-- JobGroupKill --> 
+  <wsdl:message name="KillJobGroupRequest">
+  	<wsdl:part name="parameters" element="tns:KillJobGroup"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="KillJobGroupResponse">
+  	<wsdl:part name="parameters" element="tns:KillJobGroupResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="KillGroupFault">
+    <wsdl:part name="parameters" element="tns:KillJobGroupFault"></wsdl:part>
+  </wsdl:message>
+
+
+
+
+<!-- JobGroupSuspend --> 
+  <wsdl:message name="SuspendJobGroupRequest">
+  	<wsdl:part name="parameters" element="tns:SuspendJobGroup"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SuspendJobGroupResponse">
+  	<wsdl:part name="parameters" element="tns:SuspendJobGroupResponse"></wsdl:part>
+  </wsdl:message>
+
+
+  
+
+  
+<!-- JobGroupResume --> 
+  <wsdl:message name="ResumeJobGroupRequest">
+  	<wsdl:part name="parameters" element="tns:ResumeJobGroup"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ResumeJobGroupResponse">
+  	<wsdl:part name="parameters" element="tns:ResumeJobGroupResponse"></wsdl:part>
+  </wsdl:message>
+
+
+
+
+
+
+
+
+
+
+
+ 
+  
+  
+ <!-- JobTerminationNotification --> 
+  <wsdl:message name="JobTerminatedNotification">
+  	<wsdl:part name="parameters" element="tns:JobTerminatedNotification"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="JobTerminatedNotificationResponse">
+  	<wsdl:part name="parameters" element="tns:JobTerminatedNotificationResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="JobTerminatedNotificationFault">
+    <wsdl:part name="parameters" element="tns:JobTerminatedNotificationFault"></wsdl:part>
+  </wsdl:message>
+  
+
+<!--  -->  
+  
+  
+  
+  
+ <!--  PORT TYPES -->
+  
+  <wsdl:portType name="PJSMasterPort">
+  
+        <wsdl:operation name="GetHostsName">
+        <wsdl:documentation> 	Gets the hosts name present in the cluster
+      				 		 	Possible faults:
+					 			-GetHostNameFault if the service cannot be contacted or the are some problems server-side
+     	 </wsdl:documentation>
+        	<wsdl:input message="tns:GetHostsNameRequest"></wsdl:input>
+        	<wsdl:output message="tns:GetHostsNameResponse"></wsdl:output>
+        	<wsdl:fault name="fault" message="tns:GetHostsNameFault"></wsdl:fault>
+        </wsdl:operation>
+        
+        <wsdl:operation name="GetHosts">
+        <wsdl:documentation> 	Gets the hosts, in the request hosts name have to be specified
+      				 			Possible faults:
+      				 			-UnknownHost if a non present host is requested
+					 			-GetHostsFault if the service cannot be contacted or the are some problems server-side
+     	 </wsdl:documentation>
+        	<wsdl:input message="tns:GetHostsRequest"></wsdl:input>
+        	<wsdl:output message="tns:GetHostsResponse"></wsdl:output>
+        	<wsdl:fault name="faultGeneric" message="tns:GetHostsFault"></wsdl:fault>
+        	<wsdl:fault name="faultUnknownHost" message="tns:UnknownHost"></wsdl:fault>
+        	
+        </wsdl:operation>
+        
+        
+        <wsdl:operation name="GetJobId">
+        <wsdl:documentation> 	Gets the job ids present in the cluster
+      					 		Possible faults:
+					 			-GetJobIdFault if the service cannot be contacted or the are some problems server-side
+     	 </wsdl:documentation>
+        	<wsdl:input message="tns:GetJobIdRequest"></wsdl:input>
+        	<wsdl:output message="tns:GetJobIdResponse"></wsdl:output>
+        	<wsdl:fault name="fault" message="tns:GetJobIdFault"></wsdl:fault>
+        </wsdl:operation>
+        
+        
+        <wsdl:operation name="GetJobs">
+        <wsdl:documentation> 	Gets the job ids, in the request jobs id have to be specified
+      				 			Possible faults:
+      				 			-UnknownJob if a non present job is requested
+					 			-GetJobsFault if the service cannot be contacted or the are some problems server-side
+     	 </wsdl:documentation>
+        	<wsdl:input message="tns:GetJobsRequest"></wsdl:input>
+        	<wsdl:output message="tns:GetJobsResponse"></wsdl:output>
+        	<wsdl:fault name="faultGeneric" message="tns:GetJobsFault"></wsdl:fault>
+        	<wsdl:fault name="faultUnknownJob" message="tns:UnknownJob"></wsdl:fault>
+        </wsdl:operation>
+
+        
+        
+        <wsdl:operation name="GetJobGroupsName">
+        <wsdl:documentation> 	Gets the job groups name present in the cluster
+      				 			Possible faults:
+					 			-GetJobGroupsNameFault if the service cannot be contacted or the are some problems server-side
+     	 </wsdl:documentation>
+        	<wsdl:input message="tns:GetJobGroupsNameRequest"></wsdl:input>
+        	<wsdl:output message="tns:GetJobGroupsNameResponse"></wsdl:output>
+        	<wsdl:fault name="fault" message="tns:GetJobGroupsNameFault"></wsdl:fault>
+        </wsdl:operation>
+        
+        <wsdl:operation name="GetJobGroups">
+        <wsdl:documentation> 	Gets the jobgroups, in the request job groups name have to be specified
+      				 			Possible faults:
+	      				 		-UnknownJobGroups if a non present job group is requested
+						 		-GetJobGroupsFault if the service cannot be contacted or the are some problems server-side
+     	 </wsdl:documentation>
+        	<wsdl:input message="tns:GetJobGroupsRequest"></wsdl:input>
+        	<wsdl:output message="tns:GetJobGroupsResponse"></wsdl:output>
+        	<wsdl:fault name="faultGeneric" message="tns:GetJobGroupsFault"></wsdl:fault>
+        	<wsdl:fault name="faultUnknownJobGroup" message="tns:UnknownJobGroup"></wsdl:fault>
+        </wsdl:operation>
+        
+        
+        
+        
+              
+  </wsdl:portType>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  <wsdl:portType name="PJSJobSubmissionPort">
+ 
+ 		<wsdl:operation name="SubmitJob">
+ 		 <wsdl:documentation>	It is designed to submit a job to the master host
+ 		 						In the request there are: client (who submits the job), command line, standard in and version (for idempotent method)
+ 		 						The output is: job id (-1 if it is impossible to dispatch) and a transactionId (to identify uniquely the applicant, if the submission host
+ 		 						already exist, its id is returned) 
+      				 			Possible faults:
+      				 			-SubmitJobFault if there are some faults or the service cannot be contacted
+     	 </wsdl:documentation>
+        	<wsdl:input message="tns:SubmitJobRequest"></wsdl:input>
+        	<wsdl:output message="tns:SubmitJobResponse"></wsdl:output>
+        	<wsdl:fault name="faultGeneric" message="tns:SubmitJobFault"></wsdl:fault>
+        </wsdl:operation>
+        
+        <wsdl:operation name="SuspendJob">
+        <wsdl:documentation>	It is designed to suspend a job
+ 		 						In the request there are: jobID, client (who is asking for service), version (for idempotent method) and transaction id (who has submitted can suspend, or the admin)
+ 		 						Possible faults:
+      				 			-SuspendFault if there are some faults (i.e. the job does not exist)
+      				 			-ServiceUnavailable if the service cannot be contacted
+     	 </wsdl:documentation>
+        	<wsdl:input message="tns:SuspendJobRequest"></wsdl:input>
+        	<wsdl:output message="tns:SuspendJobResponse"></wsdl:output>
+        	<wsdl:fault name="faultGeneric" message="tns:SuspendFault"></wsdl:fault>
+        	<wsdl:fault name="ServiceUnavailable" message="tns:ServiceUnavailable"></wsdl:fault>
+        </wsdl:operation>
+        
+        <wsdl:operation name="ResumeJob">
+        <wsdl:documentation>	It is designed to resume a job
+ 		 						In the request there are: jobID, client (who is asking for service), version (for idempotent method) and transaction id (who has submitted can suspend or the admin)
+ 		 						Possible faults:
+      				 			-ResumeFault if there are some faults (i.e. the job does not exist)
+      				 			-ServiceUnavailable if the service cannot be contacted
+     	 </wsdl:documentation>
+        	<wsdl:input message="tns:ResumeJobRequest"></wsdl:input>
+        	<wsdl:output message="tns:ResumeJobResponse"></wsdl:output>
+        	<wsdl:fault name="faultGeneric" message="tns:ResumeFault"></wsdl:fault>
+        	<wsdl:fault name="ServiceUnavailable" message="tns:ServiceUnavailable"></wsdl:fault>
+        </wsdl:operation>
+        
+        
+        
+        <wsdl:operation name="KillJob">
+        <wsdl:documentation>	It is designed to kill a job
+ 		 						In the request there are: jobID,  client (who is asking for service), version (for idempotent method) and transaction id (who has submitted or the admin can kill)
+ 		 						Possible faults:
+	      				 		-KillFault if there are some faults (i.e. the job does not exist)
+	      				 		-ServiceUnavailable if the service cannot be contacted
+     	 </wsdl:documentation>
+        	<wsdl:input message="tns:KillJobRequest"></wsdl:input>
+        	<wsdl:output message="tns:KillJobResponse"></wsdl:output>
+        	<wsdl:fault name="faultGeneric" message="tns:KillFault"></wsdl:fault>
+        	<wsdl:fault name="ServiceUnavailable" message="tns:ServiceUnavailable"></wsdl:fault>
+        </wsdl:operation>
+        
+        
+        
+        
+        
+		 <wsdl:operation name="KillJobGroup">
+		 
+		 <wsdl:documentation>	It is designed to kill a jobgroup
+ 		 						In the request there are: job group name, client (who is asking for service, only an admin can do that), version (for idempotent method) and transaction id (the admin id)
+ 		 						Possible faults:
+	      				 		-KillGroupFault if there are some faults (i.e. the jobgroup does not exist)
+	      				 		-ServiceUnavailable if the service cannot be contacted
+     	 </wsdl:documentation>
+     	 
+        	<wsdl:input message="tns:KillJobGroupRequest"></wsdl:input>
+        	<wsdl:output message="tns:KillJobGroupResponse"></wsdl:output>
+        	<wsdl:fault name="faultGeneric" message="tns:KillGroupFault"></wsdl:fault>
+        	<wsdl:fault name="ServiceUnavailable" message="tns:ServiceUnavailable"></wsdl:fault>
+        </wsdl:operation>
+        
+        
+        
+        
+         <wsdl:operation name="SuspendJobGroup">
+        <wsdl:documentation>	It is designed to suspend a jobgroup
+ 		 						In the request there are: job group name, client (who is asking for service, only an admin can do that), version (for idempotent method) and transaction id (the admin id)
+ 		 						Possible faults:
+	      				 		-SuspendFault if there are some faults (i.e. the jobgroup does not exist)
+	      				 		-ServiceUnavailable if the service cannot be contacted
+     	 </wsdl:documentation>
+        	<wsdl:input message="tns:SuspendJobGroupRequest"></wsdl:input>
+        	<wsdl:output message="tns:SuspendJobGroupResponse"></wsdl:output>
+        	<wsdl:fault name="faultGeneric" message="tns:SuspendFault"></wsdl:fault>
+        	<wsdl:fault name="ServiceUnavailable" message="tns:ServiceUnavailable"></wsdl:fault>
+        </wsdl:operation>
+        
+        <wsdl:operation name="ResumeJobGroup">
+        <wsdl:documentation>	It is designed to resume a jobgroup
+ 		 						In the request there are: job group name, client (who is asking for service, only an admin can do that), version (for idempotent method) and transaction id (the admin id)
+ 		 						Possible faults:
+	      				 		-ResumeFault if there are some faults (i.e. the jobgroup does not exist)
+	      				 		-ServiceUnavailable if the service cannot be contacted
+     	 </wsdl:documentation>
+        	<wsdl:input message="tns:ResumeJobGroupRequest"></wsdl:input>
+        	<wsdl:output message="tns:ResumeJobGroupResponse"></wsdl:output>
+        	<wsdl:fault name="faultGeneric" message="tns:ResumeFault"></wsdl:fault>
+        	<wsdl:fault name="ServiceUnavailable" message="tns:ServiceUnavailable"></wsdl:fault>
+        </wsdl:operation>
+        
+
+        <wsdl:operation name="ResultJob">
+         <wsdl:documentation>	It is designed to get the result of a job
+		 		 				In the request there are: job group name, client (who is asking for service, only an admin can do that), version (for idempotent method) and transaction id (who has submitted or the admin can retrieve information)
+		 		 				Possible faults:
+		      				 	-ResultFault if there are some faults (i.e. the job does not exist or the job is not in DONE status)
+		      				 	-ServiceUnavailable if the service cannot be contacted
+     	 </wsdl:documentation>
+        	<wsdl:input message="tns:ResultJobRequest"></wsdl:input>
+        	<wsdl:output message="tns:ResultJobResponse"></wsdl:output>
+        	<wsdl:fault name="faultGeneric" message="tns:ResultFault"></wsdl:fault>
+        	<wsdl:fault name="ServiceUnavailable" message="tns:ServiceUnavailable"></wsdl:fault>
+        </wsdl:operation>
+ 
+  
+ 
+ </wsdl:portType>
+ 
+
+
+
+
+ 
+
+	<wsdl:portType name="PJSJobTerminatedPort">
+
+
+		
+		<wsdl:operation name="JobTerminatedNotification">
+        <wsdl:documentation> 	It is designed to receive the termination job notification by an execution host.
+      				 			It receives: jobID, exit status and standard output
+      				 			Possible faults:
+	      				 		-JobTerminatedNotificationFault if there are some faults
+						 		-ServiceUnavailable if the service cannot be contacted
+     	 </wsdl:documentation>
+        	<wsdl:input message="tns:JobTerminatedNotification"></wsdl:input>
+        	<wsdl:output message="tns:JobTerminatedNotificationResponse"></wsdl:output>
+        	<wsdl:fault name="faultGeneric" message="tns:JobTerminatedNotificationFault"></wsdl:fault>
+        	<wsdl:fault name="ServiceUnavailable" message="tns:ServiceUnavailable"></wsdl:fault>
+        </wsdl:operation>
+         
+
+  	</wsdl:portType>
+  
+  
+
+ 
+<!--  BINDING -->
+  <wsdl:binding name="BindingA" type="tns:PJSMasterPort">
+  
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    	
+    	<wsdl:operation name="GetHostsName">
+    		<soap:operation
+    			soapAction="" />
+    		<wsdl:input>
+    			<soap:body use="literal" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal" />
+    		</wsdl:output>
+    		<wsdl:fault name="fault">
+    			<soap:fault use="literal" name="fault" />
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	
+    	
+    	<wsdl:operation name="GetHosts">
+    		<soap:operation
+    			soapAction="" />
+    		<wsdl:input>
+    			<soap:body use="literal" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal" />
+    		</wsdl:output>
+    		<wsdl:fault name="faultGeneric">
+    			<soap:fault use="literal" name="faultGeneric" />
+    		</wsdl:fault>
+    		<wsdl:fault name="faultUnknownHost">
+    			<soap:fault use="literal" name="faultUnknownHost" />
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	
+    	
+    	
+    	
+    	
+    	
+    	<wsdl:operation name="GetJobId">
+    		<soap:operation
+    			soapAction="" />
+    		<wsdl:input>
+    			<soap:body use="literal" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal" />
+    		</wsdl:output>
+    		<wsdl:fault name="fault">
+    			<soap:fault use="literal" name="fault" />
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	
+    	
+    	
+    	<wsdl:operation name="GetJobs">
+    		<soap:operation
+    			soapAction="" />
+    		<wsdl:input>
+    			<soap:body use="literal" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal" />
+    		</wsdl:output>
+    		<wsdl:fault name="faultGeneric">
+    			<soap:fault use="literal" name="faultGeneric" />
+    		</wsdl:fault>
+    		<wsdl:fault name="faultUnknownJob">
+    			<soap:fault use="literal" name="faultUnknownJob" />
+    		</wsdl:fault>
+    	</wsdl:operation>
+    
+    
+    
+    	
+    	
+    	<wsdl:operation name="GetJobGroupsName">
+    		<soap:operation
+    			soapAction="" />
+    		<wsdl:input>
+    			<soap:body use="literal" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal" />
+    		</wsdl:output>
+    		<wsdl:fault name="fault">
+    			<soap:fault use="literal" name="fault" />
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	
+    	
+    	<wsdl:operation name="GetJobGroups">
+    		<soap:operation
+    			soapAction="" />
+    		<wsdl:input>
+    			<soap:body use="literal" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal" />
+    		</wsdl:output>
+    		<wsdl:fault name="faultGeneric">
+    			<soap:fault use="literal" name="faultGeneric" />
+    		</wsdl:fault>
+    		<wsdl:fault name="faultUnknownJobGroup">
+    			<soap:fault use="literal" name="faultUnknownJobGroup" />
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	
+    	
+    	
+    	
+
+ 	 </wsdl:binding>
+  
+  
+  
+  
+  
+	<wsdl:binding name="BindingB" type="tns:PJSJobSubmissionPort">
+  
+  		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+  		<wsdl:operation name="SubmitJob">
+    		<soap:operation
+    			soapAction="" />
+    		<wsdl:input>
+    			<soap:body use="literal" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal" />
+    		</wsdl:output>
+    		<wsdl:fault name="faultGeneric">
+    			<soap:fault use="literal" name="faultGeneric" />
+    		</wsdl:fault>
+    	</wsdl:operation>
+  	
+  	
+  		<wsdl:operation name="SuspendJob">
+    		<soap:operation
+    			soapAction="" />
+    		<wsdl:input>
+    			<soap:body use="literal" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal" />
+    		</wsdl:output>
+    		<wsdl:fault name="faultGeneric">
+    			<soap:fault use="literal" name="faultGeneric" />
+    		</wsdl:fault>
+    		<wsdl:fault name="ServiceUnavailable">
+    			<soap:fault use="literal" name="ServiceUnavailable" />
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	
+    	
+    	<wsdl:operation name="ResumeJob">
+    		<soap:operation
+    			soapAction="" />
+    		<wsdl:input>
+    			<soap:body use="literal" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal" />
+    		</wsdl:output>
+    		<wsdl:fault name="faultGeneric">
+    			<soap:fault use="literal" name="faultGeneric" />
+    		</wsdl:fault>
+    		<wsdl:fault name="ServiceUnavailable">
+    			<soap:fault use="literal" name="ServiceUnavailable" />
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	
+    	
+    	<wsdl:operation name="KillJob">
+    		<soap:operation
+    			soapAction="" />
+    		<wsdl:input>
+    			<soap:body use="literal" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal" />
+    		</wsdl:output>
+    		<wsdl:fault name="faultGeneric">
+    			<soap:fault use="literal" name="faultGeneric" />
+    		</wsdl:fault>
+    		<wsdl:fault name="ServiceUnavailable">
+    			<soap:fault use="literal" name="ServiceUnavailable" />
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	
+    	
+    	    	<wsdl:operation name="KillJobGroup">
+    		<soap:operation
+    			soapAction="" />
+    		<wsdl:input>
+    			<soap:body use="literal" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal" />
+    		</wsdl:output>
+    		<wsdl:fault name="faultGeneric">
+    			<soap:fault use="literal" name="faultGeneric" />
+    		</wsdl:fault>
+    		<wsdl:fault name="ServiceUnavailable">
+    			<soap:fault use="literal" name="ServiceUnavailable" />
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	<wsdl:operation name="SuspendJobGroup">
+    		<soap:operation
+    			soapAction="" />
+    		<wsdl:input>
+    			<soap:body use="literal" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal" />
+    		</wsdl:output>
+    		<wsdl:fault name="faultGeneric">
+    			<soap:fault use="literal" name="faultGeneric" />
+    		</wsdl:fault>
+    		<wsdl:fault name="ServiceUnavailable">
+    			<soap:fault use="literal" name="ServiceUnavailable" />
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	
+    	
+    	<wsdl:operation name="ResumeJobGroup">
+    		<soap:operation
+    			soapAction="" />
+    		<wsdl:input>
+    			<soap:body use="literal" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal" />
+    		</wsdl:output>
+    		<wsdl:fault name="faultGeneric">
+    			<soap:fault use="literal" name="faultGeneric" />
+    		</wsdl:fault>
+    		<wsdl:fault name="ServiceUnavailable">
+    			<soap:fault use="literal" name="ServiceUnavailable" />
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	
+  		
+  		
+  		<wsdl:operation name="ResultJob">
+    		<soap:operation
+    			soapAction="" />
+    		<wsdl:input>
+    			<soap:body use="literal" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal" />
+    		</wsdl:output>
+    		<wsdl:fault name="faultGeneric">
+    			<soap:fault use="literal" name="faultGeneric" />
+    		</wsdl:fault>
+    		<wsdl:fault name="ServiceUnavailable">
+    			<soap:fault use="literal" name="ServiceUnavailable" />
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	 	
+  	</wsdl:binding>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <wsdl:binding name="BindingC" type="tns:PJSJobTerminatedPort">
+  
+  		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+  
+
+
+		<wsdl:operation name="JobTerminatedNotification">
+    		<soap:operation
+    			soapAction="" />
+    		<wsdl:input>
+    			<soap:body use="literal" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal" />
+    		</wsdl:output>
+    		<wsdl:fault name="faultGeneric">
+    			<soap:fault use="literal" name="faultGeneric" />
+    		</wsdl:fault>
+    		<wsdl:fault name="ServiceUnavailable">
+    			<soap:fault use="literal" name="ServiceUnavailable" />
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	
+    	
+    	
+    	
+    	
+    	
+   	</wsdl:binding>
+  
+  
+<!--  SERVICE -->
+
+
+
+
+  <wsdl:service name="PJSJobSubmission">
+    <wsdl:port binding="tns:BindingB" name="PJSJobSubmissionPort">
+      <soap:address location="http://localhost:8182/PJSJobSubmission"/>
+    </wsdl:port>
+  </wsdl:service>
+
+  <wsdl:service name="PJSMaster">
+    <wsdl:port binding="tns:BindingA" name="PJSMasterPort">
+      <soap:address location="http://localhost:8182/PJSMaster"/>
+    </wsdl:port>
+  </wsdl:service>
+  
+  <wsdl:service name="PJSJobTerminatedNotification">
+    <wsdl:port binding="tns:BindingC" name="PJSJobTerminatedNotificationPort">
+      <soap:address location="http://localhost:8182/PJSJobTerminatedNotification"/>
+    </wsdl:port>
+  </wsdl:service>
+    
+  
+  
+  
+</wsdl:definitions>
+

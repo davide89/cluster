@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" > 
+    <xsd:element name="cluster">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="hosts" type="hostsType" minOccurs="1" maxOccurs="1"></xsd:element>
+    			<xsd:element name="jobgroups" type="jobgroupsType" minOccurs="1" maxOccurs="1"></xsd:element>
+    		</xsd:sequence>
+    		<xsd:attribute name="name" use="required" type="nameType">
+    		</xsd:attribute>
+    		<xsd:attribute name="master" type="nameType" use="optional"></xsd:attribute>
+    		<xsd:attribute name="status">
+    			<xsd:simpleType>
+    				<xsd:restriction base="xsd:string">
+    					<xsd:enumeration value="OK"></xsd:enumeration>
+    					<xsd:enumeration value="UNAVAIL"></xsd:enumeration>
+    				</xsd:restriction>
+    			</xsd:simpleType>
+    		</xsd:attribute>
+    	</xsd:complexType>
+    	<xsd:key name="idHostName"> 
+      		<xsd:selector xpath="./hosts/host"/> 
+      		<xsd:field xpath="@name"/> 
+    	  </xsd:key> 
+    	  <xsd:keyref name="refExecHost" refer="idHostName"> 
+      		<xsd:selector xpath="./jobgroups/jobgroup/job"/> 
+      		<xsd:field xpath="@exechost"></xsd:field> 
+    	  </xsd:keyref>
+    	  <xsd:keyref name="refSubHost" refer="idHostName"> 
+      		<xsd:selector xpath="./jobgroups/jobgroup/job"/> 
+      		<xsd:field xpath="@subhost"></xsd:field> 
+    	  </xsd:keyref>
+    	  <xsd:keyref name="refMasterHost" refer="idHostName"> 
+      		<xsd:selector xpath="."/> 
+      		<xsd:field xpath="@master"></xsd:field> 
+    	  </xsd:keyref>
+    	  <xsd:key name="idJobGroupName"> 
+      		<xsd:selector xpath="./jobgroups/jobgroup"/> 
+      		<xsd:field xpath="@name"/> 
+    	  </xsd:key>
+    	  <xsd:key name="idJobName"> 
+      		<xsd:selector xpath="./jobgroups/jobgroup/job"/> 
+      		<xsd:field xpath="@id"/> 
+    	  </xsd:key>
+    </xsd:element>
+
+
+    <xsd:complexType name="hostsType">
+    	<xsd:sequence>
+    		<xsd:element name="host" type="hostType" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="jobgroupsType">
+    	<xsd:sequence>
+    		<xsd:element name="jobgroup" type="jobgroupType" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="hostType">
+    	<xsd:attribute name="name" type="nameType"></xsd:attribute>
+    	<xsd:attribute name="load" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="phmem" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="server" type="xsd:boolean"></xsd:attribute>
+    	<xsd:attribute name="status">
+    		<xsd:simpleType>
+    			<xsd:restriction base="xsd:string">
+    				<xsd:enumeration value="OK"></xsd:enumeration>
+    				<xsd:enumeration value="UNAVAIL"></xsd:enumeration>
+    				<xsd:enumeration value="CLOSED"></xsd:enumeration>
+    				<xsd:enumeration value="UNLICENSED"></xsd:enumeration>
+    			</xsd:restriction>
+    		</xsd:simpleType>
+    	</xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="jobgroupType">
+    	<xsd:sequence>
+    		<xsd:element name="desc" type="xsd:string" minOccurs="0" maxOccurs="1"></xsd:element>
+    		<xsd:element name="job" type="jobType" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+    	</xsd:sequence>
+    	<xsd:attribute name="name" type="nameType"></xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="jobType">
+    	<xsd:attribute name="id" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="exechost" type="nameType"></xsd:attribute>
+    	<xsd:attribute name="subhost" type="nameType"></xsd:attribute>
+    	<xsd:attribute name="state">
+    		<xsd:simpleType>
+    			<xsd:restriction base="xsd:string">
+    				<xsd:enumeration value="PENDING"></xsd:enumeration>
+    				<xsd:enumeration value="RUNNING"></xsd:enumeration>
+    				<xsd:enumeration value="DONE"></xsd:enumeration>
+    				<xsd:enumeration value="EXIT"></xsd:enumeration>
+    				<xsd:enumeration value="SUSPENDED"></xsd:enumeration>
+    			</xsd:restriction>
+    		</xsd:simpleType>
+    	</xsd:attribute>
+    	<xsd:attribute name="subtime" type="xsd:dateTime"></xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:simpleType name="nameType">
+    	<xsd:restriction base="xsd:string">
+    		<xsd:pattern value="[A-Za-z][A-Za-z0-9_]*"></xsd:pattern>
+    	</xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

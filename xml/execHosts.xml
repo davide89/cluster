@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:hosts xmlns:tns="http://pad.polito.it/PJSHostsInfo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pad.polito.it/PJSHostsInfo ../xsd/PJSHostsInfo.xsd ">
+  <tns:host load="0" memory="0" name="host1" status="OK" type="Master" uri="http://localhost:8085"/>
+  <tns:host load="0" memory="0" name="host2" status="OK" type="Server" uri="http://localhost:8086"/>
+</tns:hosts>

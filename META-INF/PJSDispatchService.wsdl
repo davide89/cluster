@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<definitions targetNamespace="http://pad.polito.it/PJSDispatch" name="PJSDispatchService" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://pad.polito.it/PJSDispatch" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <import namespace="http://pad.polito.it/PJS" location="PJSDispatch.wsdl"/>
+  <binding name="PJSDispatchPortBinding" type="ns1:PJSDispatch"
+  	xmlns:ns1="http://pad.polito.it/PJS">
+  	<soap:binding transport="http://schemas.xmlsoap.org/soap/http"
+  		style="document" />
+  	<operation name="dispatch">
+  		<soap:operation soapAction="" />
+  		<input>
+  			<soap:body use="literal" />
+  		</input>
+  		<output>
+  			<soap:body use="literal" />
+  		</output>
+  		<fault name="AlreadyDispatchedJob">
+  			<soap:fault name="AlreadyDispatchedJob" use="literal" />
+  		</fault>
+  		<fault name="TooManyJobs">
+  			<soap:fault name="TooManyJobs" use="literal" />
+  		</fault>
+  		<fault name="ServiceUnavailable">
+  			<soap:fault name="ServiceUnavailable" use="literal" />
+  		</fault>
+  	</operation>
+  	<operation name="resume">
+  		<soap:operation soapAction="" />
+  		<input>
+  			<soap:body use="literal" />
+  		</input>
+  		<output>
+  			<soap:body use="literal" />
+  		</output>
+  		<fault name="UnknownJob">
+  			<soap:fault name="UnknownJob" use="literal" />
+  		</fault>
+  		<fault name="ServiceUnavailable">
+  			<soap:fault name="ServiceUnavailable" use="literal" />
+  		</fault>
+  	</operation>
+  	<operation name="suspend">
+  		<soap:operation soapAction="" />
+  		<input>
+  			<soap:body use="literal" />
+  		</input>
+  		<output>
+  			<soap:body use="literal" />
+  		</output>
+ 		<fault name="UnknownJob">
+  			<soap:fault name="UnknownJob" use="literal" />
+  		</fault>
+  		<fault name="ServiceUnavailable">
+  			<soap:fault name="ServiceUnavailable" use="literal" />
+  		</fault>
+   	</operation>
+  	<operation name="kill">
+  		<soap:operation soapAction="" />
+  		<input>
+  			<soap:body use="literal" />
+  		</input>
+  		<output>
+  			<soap:body use="literal" />
+  		</output>
+  		<fault name="UnknownJob">
+  			<soap:fault name="UnknownJob" use="literal" />
+  		</fault>
+  		<fault name="ServiceUnavailable">
+  			<soap:fault name="ServiceUnavailable" use="literal" />
+  		</fault>
+  	</operation>
+  </binding>
+  <service name="PJSDispatchService">
+    <port name="PJSDispatchPort" binding="tns:PJSDispatchPortBinding">
+      <soap:address location="http://localhost:8181/PJSDispatchService"/>
+    </port>
+  </service>
+</definitions>
+

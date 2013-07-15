@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://pad.polito.it/PJSMasterService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PJSMasterService" targetNamespace="http://pad.polito.it/PJSMasterService/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://pad.polito.it/PJSMasterService/">
+            <xsd:include schemaLocation="PJSInfo.xsd"></xsd:include>
+            <xsd:include schemaLocation="PJSInfo.xsd"></xsd:include>
+            <xsd:element name="jobIsDone">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="jobID" type="xsd:positiveInteger"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="jobIsDoneResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="submitJob">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="cmd" type="xsd:string"></xsd:element>
+      			<xsd:element name="stdin" type="xsd:string" minOccurs="0" maxOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="submitJobResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="jobID" type="xsd:positiveInteger"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UnavailFault">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="Message" type="xsd:string" minOccurs="0" maxOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getHostNames">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getHostNamesResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="hostNames" type="xsd:string" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getHostNamesFault">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="getHostNamesFault"
+      				type="xsd:string">
+      			</xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getHosts">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="hostNames" type="xsd:string" minOccurs="1" maxOccurs="unbounded"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getHostsResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="hosts" type="hostType" minOccurs="1" maxOccurs="unbounded"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getHostsFault">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="getHostsFault" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getJGNames">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getJGNamesResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="JGNames" type="xsd:string" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getJGNamesFault">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="getJGNamesFault"
+      				type="xsd:string">
+      			</xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetJobGroups">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="JGNames" type="xsd:string" minOccurs="1" maxOccurs="unbounded"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetJobGroupsResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="JobGroups" type="jobgroupType" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetJobGroupsFault">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="GetJobGroupsFault"
+      				type="xsd:string">
+      			</xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getHostsFault1">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetJobGroupsFault1">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="jobIsDoneFault">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="submitJobFault">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="jobIsDoneRequest">
+    <wsdl:part element="tns:jobIsDone" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="jobIsDoneResponse">
+    <wsdl:part element="tns:jobIsDoneResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="submitJobRequest">
+  	<wsdl:part name="parameters" element="tns:submitJob"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="submitJobResponse">
+  	<wsdl:part name="parameters" element="tns:submitJobResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="jobIsDoneFault">
+  	<wsdl:part name="parameters" element="tns:UnavailFault"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="submitJobFault">
+  	<wsdl:part name="parameters" element="tns:UnavailFault"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getHostNamesRequest">
+  	<wsdl:part name="parameters" element="tns:getHostNames"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getHostNamesResponse">
+  	<wsdl:part name="parameters" element="tns:getHostNamesResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getHostNamesFault">
+  	<wsdl:part name="parameters" element="tns:UnavailFault"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getHostsRequest">
+  	<wsdl:part name="parameters" element="tns:getHosts"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getHostsResponse">
+  	<wsdl:part name="parameters" element="tns:getHostsResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getHostsFault">
+  	<wsdl:part name="parameters" element="tns:UnavailFault"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getJGNamesRequest">
+  	<wsdl:part name="parameters" element="tns:getJGNames"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getJGNamesResponse">
+  	<wsdl:part name="parameters" element="tns:getJGNamesResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getJGNamesFault">
+  	<wsdl:part name="parameters" element="tns:UnavailFault"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetJobGroupsRequest">
+  	<wsdl:part name="parameters" element="tns:GetJobGroups"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetJobGroupsResponse">
+  	<wsdl:part name="parameters" element="tns:GetJobGroupsResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetJobGroupsFault">
+  	<wsdl:part name="parameters" element="tns:UnavailFault"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getHostsFault1">
+  	<wsdl:part name="parameters" element="tns:getHostsFault1"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetJobGroupsFault1">
+  	<wsdl:part name="parameters" element="tns:GetJobGroupsFault1"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="jobIsDoneFault1">
+  	<wsdl:part name="parameters" element="tns:jobIsDoneFault"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="submitJobFault1">
+  	<wsdl:part name="parameters" element="tns:submitJobFault"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="PJSMaster">
+    <wsdl:operation name="jobIsDone">
+      <wsdl:input message="tns:jobIsDoneRequest"/>
+      <wsdl:output message="tns:jobIsDoneResponse"/>
+            <wsdl:fault name="ServiceUnavailable" message="tns:jobIsDoneFault"></wsdl:fault>
+            <wsdl:fault name="UnknownJob" message="tns:jobIsDoneFault1"></wsdl:fault>
+        </wsdl:operation>
+    <wsdl:operation name="submitJob">
+    	<wsdl:input message="tns:submitJobRequest"></wsdl:input>
+    	<wsdl:output message="tns:submitJobResponse"></wsdl:output>
+            <wsdl:fault name="ServiceUnavailable" message="tns:submitJobFault"></wsdl:fault>
+            <wsdl:fault name="Unauthorized" message="tns:submitJobFault1"></wsdl:fault>
+        </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="PJSAdmin">
+  	<wsdl:operation name="getHostNames">
+  		<wsdl:input message="tns:getHostNamesRequest"></wsdl:input>
+  		<wsdl:output message="tns:getHostNamesResponse"></wsdl:output>
+            <wsdl:fault name="ServiceUnavailable" message="tns:getHostNamesFault"></wsdl:fault>
+        </wsdl:operation>
+  	<wsdl:operation name="getHosts">
+  		<wsdl:input message="tns:getHostsRequest"></wsdl:input>
+  		<wsdl:output message="tns:getHostsResponse"></wsdl:output>
+            <wsdl:fault name="ServiceUnavailable" message="tns:getHostsFault"></wsdl:fault>
+            <wsdl:fault name="UnknownNames" message="tns:getHostsFault1"></wsdl:fault>
+        </wsdl:operation>
+  	<wsdl:operation name="getJGNames">
+  		<wsdl:input message="tns:getJGNamesRequest"></wsdl:input>
+  		<wsdl:output message="tns:getJGNamesResponse"></wsdl:output>
+            <wsdl:fault name="ServiceUnavailable" message="tns:getJGNamesFault"></wsdl:fault>
+        </wsdl:operation>
+  	<wsdl:operation name="GetJobGroups">
+  		<wsdl:input message="tns:GetJobGroupsRequest"></wsdl:input>
+  		<wsdl:output message="tns:GetJobGroupsResponse"></wsdl:output>
+            <wsdl:fault name="ServiceUnavailable" message="tns:GetJobGroupsFault"></wsdl:fault>
+            <wsdl:fault name="UnknownNames" message="tns:GetJobGroupsFault1"></wsdl:fault>
+        </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PJSMasterPortBinding" type="tns:PJSMaster">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="jobIsDone">
+      <soap:operation soapAction="http://pad.polito.it/PJSMasterService/jobIsDone"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PJSAdminPortBinding" type="tns:PJSAdmin">
+  	<soap:binding style="document"
+  		transport="http://schemas.xmlsoap.org/soap/http" />
+  	<wsdl:operation name="getHostNames">
+  		<soap:operation
+  			soapAction="http://pad.polito.it/PJSMasterService/getHostNames" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PJSMasterService">
+    <wsdl:port binding="tns:PJSMasterPortBinding" name="PJSMasterPort">
+      <soap:address location="http://localhost:8183/PJSMasterService"/>
+    </wsdl:port>
+    <wsdl:port name="PJSAdminPort" binding="tns:PJSAdminPortBinding">
+    	<soap:address location="http://localhost:8184/PJSAdminService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<project name="Assignment6" default="init" basedir=".">
+
+
+	<property name="lab6.location" location="." />
+	<property name="build.dir" location="${basedir}/build" />
+	<property name="src.dir" location="${lab6.location}/src" />
+	<property name="gen.src.dir" location="${lab6.location}/generated/gen-src" />
+	<property name="generated.dir" location="${basedir}/generated/gen-src" />
+	<property name="pkg2"  value="it.polito.dp2.PJS.sol6.client2"/>
+	<property name="pkg_service"  value="it.polito.dp2.PJS.sol6.service"/>
+	<property name="build_delete"  value="it/polito/dp2/PJS/sol6/"/>
+	<property name="WSDL"  location="${basedir}/wsdl/PJSMaster/PJSMaster.wsdl"/>
+	<property name="gen.dir" location="${lab6.location}/generated" />
+	<property name="build.server.dir" location="${basedir}/src/it/polito/dp2/PJS/sol6/service" />
+	
+	
+	
+	<!-- URL FOR CLIENTS -->
+	<property name="it.polito.dp2.PJS.sol6.URL1" value="http://localhost:8182" />
+	<property name="it.polito.dp2.PJS.sol6.URL2" value="http://localhost:8182" />
+	<property name="WSDL_URL1" value="${it.polito.dp2.PJS.sol6.URL1}/PJSMaster?wsdl" />
+	<property name="WSDL_URL2" value="${it.polito.dp2.PJS.sol6.URL2}/PJSJobSubmission?wsdl" />
+	<property name="pkg_client1"  value="it.polito.dp2.PJS.sol6.client1"/>
+	<property name="pkg_client2"  value="it.polito.dp2.PJS.sol6.client2"/>
+	
+	
+	
+	<property name="compile.service" location="${basedir}/src/it/polito/dp2/PJS/sol6/service" />
+	<property name="compile.client1" location="${basedir}/src/it/polito/dp2/PJS/sol6/client1" />
+	<property name="compile.client2" location="${basedir}/src/it/polito/dp2/PJS/sol6/client2" />
+	
+	<property name="lib.dir" location="${basedir}/lib" />
+	
+	<property name="debug" value="true" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.6" />
+	<property name="source" value="1.6" />
+	
+	
+	
+	
+	
+	<!-- targets -->
+	<target name="init">
+		<mkdir dir="${gen.src.dir}"/>
+		<mkdir dir="${build.dir}"/>
+	</target>   
+	
+	
+	
+	<path id="classpath">
+			<pathelement location="${build.dir}" />
+			<pathelement location="${lib.dir}/RandomCluster.jar"/>
+			<pathelement location="${lib.dir}/junit-4.5.jar"/>
+			<pathelement location="${lib.dir}/PJS.jar"/>
+			<pathelement location="${lib.dir}/ExecutionHostServer.jar"/>
+			<pathelement location="${basedir}/META-INF/PJSMaster.wsdl"/>
+			<pathelement location="${basedir}/META-INF/PJSSchema.xsd"/>
+	</path>
+	
+	
+
+	
+	
+	
+	
+	<!--compiling xsd and wsdl PJSDispatch -->
+	
+	
+		<property name="pkg.test"  value="it.polito.dp2.PJS.lab6.tests"/>
+		<property name="WSDL_PJSDisatchService"  location="${lab6.location}/wsdl/PJSDispatch/PJSDispatchService.wsdl"/>
+		<property name="XSD_PJSHostsInfo"  location="${lab6.location}/xsd/PJSHostsInfo.xsd"/>
+	
+	
+	
+		 <target name="compile-xsd" depends="init" description="compile xsd of execHosts">
+				<echo message="Compiling the schema..." />
+		    	<mkdir dir="${gen.src.dir}" />
+		 	
+		 	<exec executable="xjc">
+			        <arg line="-d ${gen.src.dir} -p ${pkg.test}.gen.jaxb ${XSD_PJSHostsInfo}"/>
+			    </exec>
+		  </target>
+		
+	
+		<target name="compile-wsdl" depends="init">
+			<exec executable="wsimport">
+		   	    <arg line="-p ${pkg.test}.gen.jaxws -d ${build.dir} -keep -s ${gen.src.dir} ${WSDL_PJSDisatchService}"/>
+		   	</exec>
+		 </target>
+	
+	
+
+	
+	
+	<target name="build-server" depends="move-files, compile-xsd,compile-wsdl" description="Build service">
+			   	
+				<exec executable="wsimport">
+			   	    <arg line="-d '${build.dir}' -p '${pkg_service}.gen.jaxws' -keep -s ${gen.src.dir} ${WSDL}"/>
+			   	</exec>
+			
+			
+			
+						
+				<javac srcdir="${compile.service}" debug="${debug}" debuglevel="${debuglevel}" source="${source}" target="${target}" destdir="${build.dir}"
+								classpath="${basedir}/lib/PJS.jar" includeantruntime="false">
+								<src path="${src.dir}/it/polito/dp2/PJS/sol6/service"/>
+								<src path="${generated.dir}"/>
+				</javac>
+			
+		
+	</target>
+   	
+					
+					
+					
+					
+	
+	<target name="compile-client-1" depends="move-files" description="Build client1">
+			   	
+				<exec executable="wsimport">
+					<arg line="-d '${build.dir}' -p '${pkg_client1}.gen.jaxws' -keep -s ${gen.src.dir} ${WSDL_URL1}"/>
+			   	</exec>
+				
+				<javac srcdir="${compile.client1}" debug="${debug}" debuglevel="${debuglevel}" source="${source}" target="${target}" destdir="${build.dir}"
+								classpath="${basedir}/lib/PJS.jar" includeantruntime="false">
+								<src path="${src.dir}/it/polito/dp2/PJS/sol6/client1"/>
+								<src path="${generated.dir}"/>
+			
+				</javac>
+	
+	</target>
+	
+	
+	
+	
+	
+	<target name="compile-client-2">
+			<echo>Building the client-2 solution...</echo>
+		
+		
+			<exec executable="wsimport">
+							<arg line="-d '${build.dir}' -p '${pkg_client2}.gen.jaxws' -keep -s ${gen.src.dir} ${WSDL_URL2}"/>
+			</exec>		
+		
+		
+			<javac destdir="${build.dir}" debug="${debug}" debuglevel="${debuglevel}" source="${source}" target="${target}" includeantruntime="false">
+				<src path="${src.dir}"/>
+				<include name="it/polito/dp2/PJS/sol6/client2/**" />
+				<classpath>
+					<path refid="classpath" />
+				</classpath>
+			</javac>
+			<echo>Done.</echo>
+	</target>
+	
+	
+	
+	
+	
+	
+	
+	<target name="move-files" depends="init">
+		
+			<copy todir="${lab6.location}/META-INF" overwrite="true">
+				<fileset dir="${lab6.location}/wsdl/PJSMaster/" includes="**"/>
+			</copy>
+		
+			<copy todir="${build.dir}/META-INF" overwrite="true">
+				<fileset dir="${basedir}/wsdl/PJSMaster/" includes="**"/>
+			</copy>
+		
+	</target>
+	
+	
+	
+	
+	
+	<target name="run-client1" depends="compile-client-1" description="Run service">
+				
+			
+					<!--
+						<copy todir="${build.dir}/META-INF" overwrite="true">
+									<fileset dir="${basedir}/wsdl/PJSMaster/" includes="**"/>
+						</copy>
+					-->
+		
+		
+				<!--generating the artifacts -->
+				
+				<exec executable="wsimport">
+					<arg line="-d '${build.dir}' -p '${pkg_client1}.gen.jaxws' -keep -s ${gen.src.dir} ${WSDL_URL1}"/>
+	    		</exec>
+
+			
+				<java classname="it.polito.dp2.PJS.sol6.client1.ClusterFactory" failonerror="true" fork="yes">
+						<classpath refid="classpath"/>
+					
+					<sysproperty key="it.polito.dp2.PJS.sol6.URL1" value="${it.polito.dp2.PJS.sol6.URL1}" />
+	
+				</java>
+			
+	</target>
+			
+			
+	
+	
+	<target name="run-client1_simple" depends="" description="Run service">
+					
+				
+					<java classname="it.polito.dp2.PJS.sol6.client1.ClusterFactory" failonerror="true" fork="yes">
+							<classpath refid="classpath"/>
+						
+						<sysproperty key="it.polito.dp2.PJS.sol6.URL1" value="${it.polito.dp2.PJS.sol6.URL1}" />
+		
+					</java>
+				
+	</target>
+	
+	
+	<target name="run-client2_simple" depends="" description="Run service">
+						
+					
+						<java classname="it.polito.dp2.PJS.sol6.client2.Client2" failonerror="true" fork="yes">
+								<classpath refid="classpath"/>
+							
+							<sysproperty key="it.polito.dp2.PJS.sol6.URL2" value="${it.polito.dp2.PJS.sol6.URL2}" />
+			
+						</java>
+					
+	</target>
+	
+	
+
+   
+	
+	
+   
+   <target name="clean">
+   		<delete dir="${gen.src.dir}"/>
+   		<delete dir="${build.dir}/${build_delete}"/>
+   </target>   
+   
+	
+	
+	<target name="run-server" depends="build-server" description="Run service">
+			
+			<java classname="it.polito.dp2.PJS.sol6.service.PJSMasterServer" failonerror="true" fork="yes">
+					<classpath refid="classpath"/>
+			</java>
+		
+	</target>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+   
+ </project>
+   
